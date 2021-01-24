@@ -6,7 +6,7 @@
 
 Here is a quick example to using `flask_jsonvalidator`, validating a request JSON data:\
 
-**All neccessary imports***
+**All neccessary imports**
 ```python
 from json_validator import (
     JSONValidator,
@@ -18,6 +18,8 @@ from json_validator import (
     ArrayOfValidator
 )
 ```
+
+**A simple validator instance**
 
 ```python
 class JSONCheck(JSONValidator):
