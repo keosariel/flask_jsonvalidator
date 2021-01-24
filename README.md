@@ -74,3 +74,5 @@ if __name__ == "__main__":
     app.run(debug=True)
     
 ```
+
+See [full code](https://github.com/keosariel/flask_jsonvalidator/blob/main/app.py)
