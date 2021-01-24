@@ -11,10 +11,7 @@ Here is a quick example to using `flask_jsonvalidator`, validating a request JSO
 from json_validator import (
     JSONValidator,
     IntValidator,
-    FloatValidator,
-    BooleanValidator,
     StringValidator,
-    ArrayValidator,
     ArrayOfValidator
 )
 ```
