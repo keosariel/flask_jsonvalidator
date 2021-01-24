@@ -7,7 +7,7 @@
 Here is a quick example to using `flask_jsonvalidator`, validating a request JSON data:\
 
 **All neccessary imports***
-```
+```python
 from json_validator import (
     JSONValidator,
     IntValidator,
@@ -19,7 +19,7 @@ from json_validator import (
 )
 ```
 
-```
+```python
 class JSONCheck(JSONValidator):
     validators = {
         "name"    : StringValidator(max=15, min=2, nullable=False),
@@ -30,7 +30,7 @@ class JSONCheck(JSONValidator):
 
 #### A simple decorator for the JSON data check 
 
-```
+```python
 from functools import wraps
 from flask import request, abort
 
@@ -47,7 +47,7 @@ def args_check(validator):
 
 #### Use case
 
-```
+```python
 from flask import Flask, jsonify, request, abort
 
 app = Flask(__name__)
