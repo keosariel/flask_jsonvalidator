@@ -8,7 +8,7 @@ Here is a quick example to using `flask_jsonvalidator`, validating a request JSO
 
 **All neccessary imports**
 ```python
-from json_validator import (
+from flask_jsonvalidator import (
     JSONValidator,
     IntValidator,
     StringValidator,
