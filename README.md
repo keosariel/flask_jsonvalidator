@@ -16,7 +16,7 @@ from flask_jsonvalidator import (
 )
 ```
 
-**A simple validator instance**
+**A simple validator class**
 
 ```python
 class JSONCheck(JSONValidator):
