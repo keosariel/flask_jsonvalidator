@@ -90,7 +90,7 @@ class StringValidator(Validator):
                     satifies_regex = bool(re.compile(self.regex).fullmatch(value))
                 else:
                     satifies_regex = bool(re.compile(self.regex).match(value))
-                current_saticfactory = current_saticfactory and current_saticfactory
+                current_saticfactory = current_saticfactory and satifies_regex
             return current_saticfactory
         return False
     
