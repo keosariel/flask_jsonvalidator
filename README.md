@@ -75,4 +75,4 @@ if __name__ == "__main__":
     
 ```
 
-See [full code](https://github.com/keosariel/flask_jsonvalidator/blob/main/app.py)
+See [full code](https://github.com/keosariel/flask_jsonvalidator/blob/master/app.py)
