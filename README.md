@@ -5,7 +5,8 @@
 ## Installing
 Install and update using pip:
 
-```$ pip install -U Flask```
+```shell
+$ pip install -U Flask```
 
 ## Example
 
