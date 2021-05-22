@@ -26,6 +26,8 @@ from flask_jsonvalidator import (
 **A simple validator class**
 
 ```python
+# validators.py
+
 class JSONCheck(JSONValidator):
     validators = {
         "name"    : StringValidator(max=15, min=2, nullable=False),
@@ -37,6 +39,7 @@ class JSONCheck(JSONValidator):
 #### A simple decorator for the JSON data check 
 
 ```python
+
 from functools import wraps
 from flask import request, abort
 
@@ -54,7 +57,13 @@ def args_check(validator):
 #### Use case
 
 ```python
-from flask import Flask, jsonify, request, abort
+from flask import (
+    Flask, 
+    jsonify, 
+    request, 
+    abort
+)
+from validators import JSONCheck
 
 app = Flask(__name__)
 
@@ -70,9 +79,9 @@ def add_user():
     global users
     
     user = dict(
-        name=request.json.get("name"),
-        age=request.json.get("age"),
-        hobbies=request.json.get("hobbies")
+        name   = request.json.get("name"),
+        age    = request.json.get("age"),
+        hobbies= request.json.get("hobbies")
     )
     users.append(user)
     return jsonify(user)
