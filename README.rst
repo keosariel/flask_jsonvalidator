@@ -1,92 +1,97 @@
-# Flask JSONvalidator
+Flask JSONvalidator
+====
 
 **flask_jsonvalidator** is a library for validating request JSON data or pratically any json data, such as those obtained from external services or command-line parsing, converted in JSON format.
 
-## Installing
-Install and update using pip:
+Installing
+----------
+Install and update using `pip` :
 
-```shell
-$ pip install flask-jsonvalidator
-```
+.. code-block:: text
 
-## Example
+    $ pip install flask-jsonvalidator
 
+..
+Example
+-------
 Here is a quick example to using `flask_jsonvalidator`, validating a request JSON data:\
 
 **All neccessary imports**
-```python
-from flask_jsonvalidator import (
-    JSONValidator,
-    IntValidator,
-    StringValidator,
-    ArrayOfValidator
-)
-```
+
+.. code-block:: python
+    
+    # validators.py
+    
+    from flask_jsonvalidator import (
+        JSONValidator,
+        IntValidator,
+        StringValidator,
+        ArrayOfValidator
+    )
 
 **A simple validator class**
 
-```python
-# validators.py
+.. code-block:: python
 
-class JSONCheck(JSONValidator):
-    validators = {
-        "name"    : StringValidator(max=15, min=2, nullable=False),
-        "age"     : IntValidator(min=13, nullable=False),
-        "hobbies" : ArrayOfValidator(validator=StringValidator(min=2,max=15, nullable=False))
-    }
-```
+    # validators.py
 
-#### A simple decorator for the JSON data check 
+    class JSONCheck(JSONValidator):
+        validators = {
+            "name"    : StringValidator(max=15, min=2, nullable=False),
+            "age"     : IntValidator(min=13, nullable=False),
+            "hobbies" : ArrayOfValidator(validator=StringValidator(min=2,max=15, nullable=False))
+        }
 
-```python
+A simple decorator for the JSON data check 
+------------------------------------------
+.. code-block:: python
 
-from functools import wraps
-from flask import request, abort
+    from functools import wraps
+    from flask import request, abort
 
-def args_check(validator):
-    def decorator(f):
-        @wraps(f)
-        def decorated_function(*args, **kwargs):
-            if not validator.validate(request.json):
-                return abort(400)
-            return f(*args, **kwargs)
-        return decorated_function
-    return decorator
-```
+    def args_check(validator):
+        def decorator(f):
+            @wraps(f)
+            def decorated_function(*args, **kwargs):
+                if not validator.validate(request.json):
+                    return abort(400)
+                return f(*args, **kwargs)
+            return decorated_function
+        return decorator
 
-#### Use case
+Use case
+--------
+.. code-block:: python
 
-```python
-from flask import (
-    Flask, 
-    jsonify, 
-    request, 
-    abort
-)
-from validators import JSONCheck
-
-app = Flask(__name__)
-
-users = []
-
-@app.route("/users", methods=["GET"])
-def get_users():
-    return jsonify(users)
-
-@app.route("/users", methods=["POST"])
-@args_check(JSONCheck())
-def add_user():
-    global users
-    
-    user = dict(
-        name   = request.json.get("name"),
-        age    = request.json.get("age"),
-        hobbies= request.json.get("hobbies")
+    from flask import (
+        Flask, 
+        jsonify, 
+        request, 
+        abort
     )
-    users.append(user)
-    return jsonify(user)
+    from validators import JSONCheck
 
-if __name__ == "__main__":
-    app.run(debug=True)
-    
-```
+    app = Flask(__name__)
+
+    users = []
+
+    @app.route("/users", methods=["GET"])
+    def get_users():
+        return jsonify(users)
+
+    @app.route("/users", methods=["POST"])
+    @args_check(JSONCheck())
+    def add_user():
+        global users
+
+        user = dict(
+            name   = request.json.get("name"),
+            age    = request.json.get("age"),
+            hobbies= request.json.get("hobbies")
+        )
+        users.append(user)
+        return jsonify(user)
+
+    if __name__ == "__main__":
+        app.run(debug=True)
+
