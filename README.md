@@ -2,7 +2,12 @@
 
 **flask_jsonvalidator** is a library for validating request JSON data or pratically any json data, such as those obtained from external services or command-line parsing, converted in JSON format.
 
-# Example
+## Installing
+Install and update using pip:
+
+```$ pip install -U Flask```
+
+## Example
 
 Here is a quick example to using `flask_jsonvalidator`, validating a request JSON data:\
 
