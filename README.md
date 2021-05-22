@@ -6,7 +6,7 @@
 Install and update using pip:
 
 ```shell
-$ pip install -U Flask
+$ pip install flask-jsonvalidator
 ```
 
 ## Example
@@ -81,5 +81,3 @@ if __name__ == "__main__":
     app.run(debug=True)
     
 ```
-
-See [full code](https://github.com/keosariel/flask_jsonvalidator/blob/master/app.py)
