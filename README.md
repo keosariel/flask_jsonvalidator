@@ -6,7 +6,8 @@
 Install and update using pip:
 
 ```shell
-$ pip install -U Flask```
+$ pip install -U Flask
+```
 
 ## Example
 
