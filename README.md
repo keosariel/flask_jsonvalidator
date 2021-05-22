@@ -1,4 +1,4 @@
-# flask_jsonvalidator
+# Flask JSONvalidator
 
 **flask_jsonvalidator** is a library for validating request JSON data or pratically any json data, such as those obtained from external services or command-line parsing, converted in JSON format.
 
