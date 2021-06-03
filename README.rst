@@ -47,7 +47,34 @@ A simple decorator for the JSON data check
 .. code-block:: python
 
     from functools import wraps
-    from flask import request, abort
+    from flask import request, abort, jsonify
+    
+    def response_data(data, error_code=None, description="", error_data=None, status_code=200):
+        data = data
+        has_error   = True if error_code else False
+
+        if not description:
+                # ERRORS_DESCRIPTION is a Dictionary containing error-codes as keys and their 
+                # description as the value
+
+            description = ERRORS_DESCRIPTION.get(error_code,"")
+
+        if has_error and error_code:
+                # ERRORS_STATUS_CODE is a Dictionary containing error-codes as keys and their 
+                # corresponding status code as the value
+
+            status_code = ERRORS_STATUS_CODE.get(error_code, BAD_REQUEST)
+
+        ret_json = {
+            "data" : data,
+            "error_code"  : error_code,
+            "has_error"   : has_error,
+            "description" : description,
+            "error_data"  : error_data,
+            "status_code" : status_code
+        }
+
+        return jsonify(ret_json), status_code
 
     def args_check(validator):
         def decorator(f):
