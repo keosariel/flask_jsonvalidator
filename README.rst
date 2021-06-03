@@ -53,8 +53,19 @@ A simple decorator for the JSON data check
         def decorator(f):
             @wraps(f)
             def decorated_function(*args, **kwargs):
-                if not validator.validate(request.json):
-                    return abort(400)
+                json_data = request.json if request.json else {}
+                no_err, msg = validator.validate(json_data)
+
+                if not no_err:
+                    # E002 = Invalid Request JSON
+                    res = response_data(
+                        data=None, 
+                        error_code=E002,
+                        error_data=msg
+                    )
+
+                    return res
+
                 return f(*args, **kwargs)
             return decorated_function
         return decorator
